@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Stefie’s Hair Salon</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#fbf6fa;--surface:#fff;--ink:#2b1736;--muted:#6f5a7a;--line:#e6d9ea;--accent:#b8287f;--accent-ink:#fff;--gold:#c9962b;--soft:#f3e6f1;--ok:#1f7a4d;--bad:#b3261e}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#1b0f23;--surface:#27172f;--ink:#f6ecf8;--muted:#b9a3c4;--line:#40294c;--accent:#e45bb0;--accent-ink:#2b1736;--gold:#e3b04b;--soft:#33203d;--ok:#5fd39a;--bad:#ff8a80}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#1b0f23;--surface:#27172f;--ink:#f6ecf8;--muted:#b9a3c4;--line:#40294c;--accent:#e45bb0;--accent-ink:#2b1736;--gold:#e3b04b;--soft:#33203d;--ok:#5fd39a;--bad:#ff8a80}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:700;line-height:1.15;margin:0 0 .5em}
+h1{font-size:clamp(2.4rem,7vw,4.4rem);letter-spacing:-.02em}
+h2{font-size:clamp(1.7rem,4vw,2.4rem)}
+h3{font-size:1.15rem}
+p{margin:0 0 1em}
+a{color:var(--accent)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+section{padding:64px 0}
+.sub{color:var(--muted);max-width:56ch}
+header.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:14px;height:60px}
+.logo{font:700 1.25rem Georgia,serif;text-decoration:none;color:var(--ink);margin-right:auto}
+.nav nav{display:flex;gap:16px;overflow-x:auto}
+.nav nav a{color:var(--ink);text-decoration:none;font-size:.92rem;white-space:nowrap}
+.nav nav a:hover{color:var(--accent)}
+.btn{display:inline-block;border:0;border-radius:999px;padding:11px 22px;background:var(--accent);color:var(--accent-ink);font-weight:600;cursor:pointer;text-decoration:none}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn.sm{padding:7px 14px;font-size:.88rem}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.icon{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--line);background:transparent;cursor:pointer}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
+.badge{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:999px;padding:5px 14px;font-size:.88rem;background:var(--surface);margin-bottom:18px}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--bad)}
+.dot.on{background:var(--ok)}
+.hero-art{position:relative;aspect-ratio:4/5;border-radius:200px 200px 24px 24px;overflow:hidden;border:1px solid var(--line)}
+.hero-art svg{width:100%;height:100%;display:block}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 26px}
+.chip{border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 16px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:6px}
+.card .meta{color:var(--muted);font-size:.9rem}
+.price{font-weight:700;font-size:1.05rem}
+.card .foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:10px}
+.card.sel{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent) inset}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}
+.gal button{padding:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface);cursor:pointer;text-align:left}
+.gal svg{display:block;width:100%;aspect-ratio:5/6;height:auto}
+.gal span{display:block;padding:8px 12px;font-size:.9rem}
+.stylists .av{width:84px;height:84px;border-radius:50%;overflow:hidden;border:2px solid var(--line)}
+.stylists .av svg{width:100%;height:100%;display:block}
+.band{background:var(--soft)}
+.book{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px}
+label{display:block;font-weight:600;font-size:.92rem;margin:14px 0 5px}
+input,select,textarea{width:100%;padding:10px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg)}
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(82px,1fr));gap:8px}
+.slot{border:1.5px solid var(--line);background:var(--bg);border-radius:10px;padding:8px 0;cursor:pointer}
+.slot[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.slot:disabled{text-decoration:line-through;opacity:.4;cursor:not-allowed}
+.sum li{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line);list-style:none}
+.sum{padding:0;margin:0 0 12px}
+.total{display:flex;justify-content:space-between;font-weight:700;font-size:1.1rem}
+.msg{margin-top:12px;padding:12px 14px;border-radius:12px;font-size:.95rem}
+.msg.err{background:color-mix(in srgb,var(--bad) 14%,transparent);color:var(--bad)}
+.msg.ok{background:color-mix(in srgb,var(--ok) 14%,transparent);color:var(--ok)}
+.bk{display:flex;justify-content:space-between;gap:10px;align-items:center;border-top:1px solid var(--line);padding:10px 0}
+.quote{font-family:Georgia,serif;font-size:1.05rem}
+details{border-bottom:1px solid var(--line);padding:12px 0}
+summary{cursor:pointer;font-weight:600}
+#bar{position:fixed;left:12px;right:12px;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);z-index:30;max-width:640px;margin:0 auto;background:var(--ink);color:var(--bg);border-radius:999px;padding:10px 12px 10px 22px;display:none;align-items:center;gap:12px;justify-content:space-between;box-shadow:0 8px 28px rgba(0,0,0,.3)}
+#bar.show{display:flex}
+dialog{border:0;border-radius:18px;padding:0;max-width:min(92vw,420px);width:100%;background:var(--surface);color:var(--ink)}
+dialog::backdrop{background:rgba(20,8,28,.6)}
+dialog svg{display:block;width:100%;height:auto}
+dialog .in{padding:16px 20px 20px}
+footer{padding:32px 0 90px;border-top:1px solid var(--line);color:var(--muted);font-size:.92rem}
+.hours td{padding:3px 18px 3px 0}
+.hours tr.today{font-weight:700;color:var(--accent)}
+@media (max-width:780px){.hero .wrap,.book{grid-template-columns:1fr}.hero-art{max-width:340px;margin:0 auto}section{padding:44px 0}.nav nav{display:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap">
+<a class="logo" href="#top">Stefie’s Hair Salon</a>
+<nav><a href="#services">Services</a><a href="#gallery">Gallery</a><a href="#team">Stylists</a><a href="#book">Book</a><a href="#visit">Visit</a></nav>
+<button class="icon" id="theme" aria-label="Switch colour theme">◐</button>
+<a class="btn sm" href="#book">Book now</a>
+</div></header>
+
+<main id="top">
+<section class="hero"><div class="wrap">
+<div>
+<div class="badge"><span class="dot" id="dot"></span><span id="openTxt">Checking hours…</span></div>
+<h1>Hair that feels like you on your best day.</h1>
+<p class="sub">Braids, cuts, colour, locs and treatments from stylists who listen first. Choose your services, pick a time, and you’re booked in under a minute.</p>
+<div class="row"><a class="btn" href="#services">Choose services</a><a class="btn ghost" href="#gallery">See our work</a></div>
+</div>
+<div class="hero-art" id="heroArt" aria-hidden="true"></div>
+</div></section>
+
+<section id="services" class="band"><div class="wrap">
+<h2>Services and prices</h2>
+<p class="sub">Add what you want to your visit. We’ll total the price and time for you.</p>
+<div class="tabs" id="svcTabs" role="group" aria-label="Filter services"></div>
+<div class="grid" id="svcGrid"></div>
+</div></section>
+
+<section id="gallery"><div class="wrap">
+<h2>Gallery</h2>
+<p class="sub">Tap a look to see it larger, then add it to your visit.</p>
+<div class="tabs" id="galTabs" role="group" aria-label="Filter looks"></div>
+<div class="gal" id="gal"></div>
+</div></section>
+
+<section id="team" class="band stylists"><div class="wrap">
+<h2>Meet your stylists</h2>
+<div class="grid" id="team-grid"></div>
+</div></section>
+
+<section id="book"><div class="wrap">
+<h2>Book your visit</h2>
+<p class="sub">Pick your services above, then choose a stylist, day and time.</p>
+<div class="book">
+<div class="panel">
+<h3>Your visit</h3>
+<ul class="sum" id="sum"></ul>
+<div class="total"><span id="tTime"></span><span id="tPrice"></span></div>
+<p class="meta" style="color:var(--muted);font-size:.88rem;margin-top:10px">Pay at the salon after your appointment. Cash and mobile money accepted.</p>
+</div>
+<form class="panel" id="form" novalidate>
+<label for="stylist">Stylist</label>
+<select id="stylist"></select>
+<label for="date">Date</label>
+<input type="date" id="date">
+<label id="slotLbl">Time</label>
+<div class="slots" id="slots" aria-labelledby="slotLbl"></div>
+<label for="name">Your name</label>
+<input id="name" autocomplete="name">
+<label for="phone">Phone number</label>
+<input id="phone" type="tel" autocomplete="tel" placeholder="e.g. 0700 000 000">
+<label for="note">Notes (optional)</label>
+<textarea id="note" rows="2" placeholder="Hair length, allergies, inspiration…"></textarea>
+<div class="row"><button class="btn" type="submit">Confirm booking</button></div>
+<div id="out" role="status"></div>
+</form>
+</div>
+<div class="panel" style="margin-top:22px">
+<h3>Your bookings on this device</h3>
+<div id="mine"></div>
+</div>
+</div></section>
+
+<section class="band"><div class="wrap">
+<h2>Kind words</h2>
+<div class="grid" id="rev"></div>
+</div></section>
+
+<section id="visit"><div class="wrap book">
+<div>
+<h2>Visit us</h2>
+<p>Add your salon’s street address here.<br>Phone / WhatsApp: <a href="https://wa.me/256700000000">+256 700 000 000</a></p>
+<table class="hours" id="hours"></table>
+<div class="row"><a class="btn" href="https://wa.me/256700000000">Message us on WhatsApp</a></div>
+</div>
+<div>
+<h2>Good to know</h2>
+<details><summary>How long will my appointment take?</summary><p>The total on your visit summary adds up the time for each service. Braids and colour take longer, so book a morning slot.</p></details>
+<details><summary>Can I cancel or change my time?</summary><p>Yes. Cancel from “Your bookings” above, or message us at least a day ahead.</p></details>
+<details><summary>Should I come with clean hair?</summary><p>For braids and locs, arrive with clean, dry, detangled hair. For cuts and colour, come as you are.</p></details>
+<details><summary>Do you do kids’ hair?</summary><p>Yes. Pick “Kids’ cut or braids” and we’ll allow extra time.</p></details>
+</div>
+</div></section>
+</main>
+<footer><div class="wrap">© <span id="yr"></span> Stefie’s Hair Salon. All rights reserved.</div></footer>
+
+<div id="bar"><span id="barTxt"></span><a class="btn sm" href="#book" style="background:var(--bg);color:var(--ink)">Book these</a></div>
+<dialog id="lb"><div id="lbArt"></div><div class="in"><h3 id="lbTitle"></h3><p class="sub" id="lbDesc"></p><div class="row"><button class="btn" id="lbAdd">Add to my visit</button><button class="btn ghost" id="lbClose">Close</button></div></div></dialog>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const fmt=n=>'UGX '+n.toLocaleString('en-US');
+const dur=m=>m>=60?Math.floor(m/60)+' hr'+(m%60?' '+m%60+' min':''):m+' min';
+const SERVICES=[
+{id:'cut',cat:'Cuts and styling',name:'Cut and blow-dry',price:35000,mins:60,d:'Shape, wash and a smooth finish.'},
+{id:'fade',cat:'Cuts and styling',name:'Barber fade',price:15000,mins:30,d:'Sharp fade with a clean line-up.'},
+{id:'kids',cat:'Cuts and styling',name:'Kids’ cut or braids',price:20000,mins:60,d:'Gentle and patient, for ages 3 to 12.'},
+{id:'updo',cat:'Cuts and styling',name:'Event updo',price:80000,mins:90,d:'Buns, twists and pinned styles for weddings and parties.'},
+{id:'silk',cat:'Cuts and styling',name:'Silk press',price:70000,mins:90,d:'Smooth, bouncy straight hair without a relaxer.'},
+{id:'box',cat:'Braids and locs',name:'Box braids',price:120000,mins:240,d:'Neat parts in your chosen length and thickness.'},
+{id:'corn',cat:'Braids and locs',name:'Cornrows',price:50000,mins:90,d:'Straight-back or in a pattern of your choice.'},
+{id:'twist',cat:'Braids and locs',name:'Twists',price:90000,mins:180,d:'Passion, Senegalese or two-strand twists.'},
+{id:'loc',cat:'Braids and locs',name:'Loc retwist',price:60000,mins:90,d:'Tidy roots and a fresh style for your locs.'},
+{id:'colour',cat:'Colour and care',name:'Full colour',price:100000,mins:120,d:'Single-shade colour from roots to ends.'},
+{id:'hl',cat:'Colour and care',name:'Highlights',price:150000,mins:150,d:'Face-framing or all-over lighter tones.'},
+{id:'deep',cat:'Colour and care',name:'Deep conditioning',price:40000,mins:45,d:'Moisture treatment for dry or damaged hair.'},
+{id:'ker',cat:'Colour and care',name:'Keratin smoothing',price:180000,mins:180,d:'Reduces frizz for up to three months.'}];
+const STYLISTS=[
+{id:'stefie',name:'Stefie',role:'Owner. Braids and colour',look:'updo',skin:'#8a5a44'},
+{id:'amina',name:'Amina',role:'Cuts and silk press',look:'bob',skin:'#a8714f'},
+{id:'grace',name:'Grace',role:'Locs and natural hair',look:'curls',skin:'#6e4332'},
+{id:'brian',name:'Brian',role:'Barber. Fades and kids’ cuts',look:'fade',skin:'#7b4d38'}];
+const LOOKS=[
+{id:'braids',cat:'Braids and locs',name:'Waist-length box braids',svc:'box',bg:['#f7d3e6','#c59be0'],hair:'#241529',skin:'#8a5a44'},
+{id:'bob',cat:'Cuts and styling',name:'Blunt chin-length bob',svc:'cut',bg:['#ffe3c4','#f0a8a0'],hair:'#2c1a1e',skin:'#a8714f'},
+{id:'curls',cat:'Cuts and styling',name:'Defined natural curls',svc:'deep',bg:['#d5ecd9','#8fcbb0'],hair:'#1f1420',skin:'#6e4332'},
+{id:'fade',cat:'Cuts and styling',name:'Skin fade with line-up',svc:'fade',bg:['#cfd9f5','#8ea4e0'],hair:'#1a1220',skin:'#7b4d38'},
+{id:'updo',cat:'Cuts and styling',name:'Sleek event updo',svc:'updo',bg:['#f3e2b8','#d9a96a'],hair:'#2b1b2e',skin:'#9a6648'},
+{id:'colour',cat:'Colour and care',name:'Copper long layers',svc:'colour',bg:['#ffd9cf','#e88f7b'],hair:'#b4552b',skin:'#c58a63'},
+{id:'locs',cat:'Braids and locs',name:'Fresh retwisted locs',svc:'loc',bg:['#e1d5f5','#a98bd6'],hair:'#2a1a22',skin:'#6e4332'},
+{id:'blonde',cat:'Colour and care',name:'Honey highlights',svc:'hl',bg:['#d6f0f2','#8dc9d1'],hair:'#7b4a2a',skin:'#a8714f',hl:'#e0ad5b'}];
+
+/* ---- JS-drawn portraits ---- */
+function art(l,w=200,h=240){
+const c=l.hair,s=l.skin,id='g'+Math.random().toString(36).slice(2,7);
+let back='',front='';
+switch(l.id){
+case 'braids':case 'locs':{
+const dash=l.id==='braids'?'stroke-dasharray="7 3"':'';const sw=l.id==='braids'?9:12;
+for(let i=0;i<7;i++){const x=64+i*12,len=l.id==='locs'?150+(i%3)*22:205;back+=`<path d="M${x} 70 Q${x+(i-3)*3} 140 ${x+(i-3)*5} ${len}" stroke="${c}" stroke-width="${sw}" fill="none" stroke-linecap="round" ${dash}/>`}
+front=`<path d="M60 108 Q58 52 100 50 Q142 52 140 108 Q128 72 100 72 Q72 72 60 108Z" fill="${c}"/>`;break}
+case 'bob':back=`<path d="M58 112 Q54 48 100 46 Q146 48 142 112 L146 156 Q100 170 54 156Z" fill="${c}"/>`;front=`<path d="M62 100 Q70 62 100 62 Q130 62 138 100 Q120 78 100 80 Q80 78 62 100Z" fill="${c}"/>`;break;
+case 'curls':for(let i=0;i<26;i++){const a=Math.PI+i/25*Math.PI,r=54+(i%3)*5;back+=`<circle cx="${100+Math.cos(a)*r}" cy="${108+Math.sin(a)*r*.95}" r="${13+(i%2)*3}" fill="${c}"/>`}
+front=`<path d="M64 100 Q70 66 100 64 Q130 66 136 100 Q118 80 100 82 Q82 80 64 100Z" fill="${c}"/>`;break;
+case 'fade':front=`<path d="M64 96 Q64 56 100 54 Q136 56 136 96 Q124 74 100 74 Q76 74 64 96Z" fill="${c}"/><path d="M62 104 Q62 80 66 78 L68 104Z M138 104 Q138 80 134 78 L132 104Z" fill="${c}" opacity=".45"/>`;break;
+case 'updo':back=`<circle cx="100" cy="44" r="21" fill="${c}"/>`;front=`<path d="M60 108 Q56 56 100 54 Q144 56 140 108 Q128 76 100 76 Q72 76 60 108Z" fill="${c}"/>`;break;
+default:back=`<defs><linearGradient id="${id}h" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c}"/><stop offset="1" stop-color="${l.hl||c}"/></linearGradient></defs><path d="M56 112 Q52 46 100 44 Q148 46 144 112 L152 214 Q100 226 48 214Z" fill="url(#${id}h)"/>`;front=`<path d="M62 100 Q72 60 100 60 Q128 60 138 100 Q118 76 100 78 Q82 76 62 100Z" fill="${c}"/>`}
+return `<svg viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${l.name||'Stylist portrait'}"><defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${(l.bg||['#f3e6f1','#c9a0dc'])[0]}"/><stop offset="1" stop-color="${(l.bg||['#f3e6f1','#c9a0dc'])[1]}"/></linearGradient></defs><rect width="${w}" height="${h}" fill="url(#${id})"/>${back}<path d="M30 ${h} Q40 178 100 172 Q160 178 170 ${h}Z" fill="#3b2147"/><rect x="88" y="146" width="24" height="32" rx="8" fill="${s}"/><ellipse cx="100" cy="112" rx="38" ry="46" fill="${s}"/>${front}<circle cx="86" cy="112" r="3" fill="#2b1736"/><circle cx="114" cy="112" r="3" fill="#2b1736"/><path d="M88 132 Q100 142 112 132" stroke="#2b1736" stroke-width="3" fill="none" stroke-linecap="round"/></svg>`}
+
+/* ---- state ---- */
+let cart=new Set(), svcCat='All', galCat='All', pickedSlot=null, lbLook=null;
+const store={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const svcById=id=>SERVICES.find(s=>s.id===id);
+
+/* ---- hours ---- */
+const HOURS={1:[8,19],2:[8,19],3:[8,19],4:[8,19],5:[8,19],6:[8,18],0:null};
+const DAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+function renderHours(){const now=new Date();const h=HOURS[now.getDay()],t=now.getHours()+now.getMinutes()/60;const open=h&&t>=h[0]&&t<h[1];
+$('#dot').className='dot'+(open?' on':'');
+$('#openTxt').textContent=open?`Open now, until ${h[1]>12?h[1]-12:h[1]}:00 ${h[1]>=12?'pm':'am'}`:'Closed now. Book for later';
+$('#hours').innerHTML=[1,2,3,4,5,6,0].map(d=>{const x=HOURS[d];return `<tr class="${d===now.getDay()?'today':''}"><td>${DAYS[d]}</td><td>${x?x[0]+':00 am to '+(x[1]-12)+':00 pm':'Closed'}</td></tr>`}).join('')}
+
+/* ---- services ---- */
+function chips(el,cats,cur,fn){el.innerHTML=['All',...cats].map(c=>`<button class="chip" aria-pressed="${c===cur}" data-c="${c}">${c}</button>`).join('');el.onclick=e=>{const b=e.target.closest('.chip');if(b)fn(b.dataset.c)}}
+function renderSvc(){const cats=[...new Set(SERVICES.map(s=>s.cat))];chips($('#svcTabs'),cats,svcCat,c=>{svcCat=c;renderSvc()});
+$('#svcGrid').innerHTML=SERVICES.filter(s=>svcCat==='All'||s.cat===svcCat).map(s=>`<div class="card ${cart.has(s.id)?'sel':''}"><h3>${s.name}</h3><div class="meta">${s.d}</div><div class="foot"><div><div class="price">${fmt(s.price)}</div><div class="meta">${dur(s.mins)}</div></div><button class="btn sm ${cart.has(s.id)?'':'ghost'}" data-id="${s.id}" aria-pressed="${cart.has(s.id)}">${cart.has(s.id)?'Added ✓':'Add'}</button></div></div>`).join('')}
+$('#svcGrid').onclick=e=>{const b=e.target.closest('button[data-id]');if(b)toggle(b.dataset.id)};
+function toggle(id,force){if(force===true)cart.add(id);else cart.has(id)?cart.delete(id):cart.add(id);renderSvc();renderCart()}
+function renderCart(){const items=[...cart].map(svcById);const p=items.reduce((a,s)=>a+s.price,0),m=items.reduce((a,s)=>a+s.mins,0);
+$('#sum').innerHTML=items.length?items.map(s=>`<li><span>${s.name}</span><span>${fmt(s.price)}</span></li>`).join(''):'<li style="color:var(--muted)">Nothing added yet. Choose services above.</li>';
+$('#tTime').textContent=items.length?'About '+dur(m):'';$('#tPrice').textContent=items.length?fmt(p):'';
+$('#bar').classList.toggle('show',items.length>0);$('#barTxt').textContent=`${items.length} service${items.length>1?'s':''} · ${fmt(p)} · ${dur(m)}`}
+
+/* ---- gallery ---- */
+function renderGal(){chips($('#galTabs'),[...new Set(LOOKS.map(l=>l.cat))],galCat,c=>{galCat=c;renderGal()});
+$('#gal').innerHTML=LOOKS.filter(l=>galCat==='All'||l.cat===galCat).map(l=>`<button data-l="${l.id}" aria-label="View ${l.name}">${art(l)}<span>${l.name}</span></button>`).join('')}
+$('#gal').onclick=e=>{const b=e.target.closest('button[data-l]');if(!b)return;lbLook=LOOKS.find(l=>l.id===b.dataset.l);const s=svcById(lbLook.svc);
+$('#lbArt').innerHTML=art(lbLook);$('#lbTitle').textContent=lbLook.name;$('#lbDesc').textContent=`${s.name}: ${fmt(s.price)}, about ${dur(s.mins)}.`;$('#lb').showModal()};
+$('#lbClose').onclick=()=>$('#lb').close();
+$('#lb').onclick=e=>{if(e.target===$('#lb'))$('#lb').close()};
+$('#lbAdd').onclick=()=>{toggle(lbLook.svc,true);$('#lb').close()};
+
+/* ---- team, reviews ---- */
+$('#team-grid').innerHTML=STYLISTS.map(s=>`<div class="card"><div class="av">${art({id:s.look,skin:s.skin,hair:'#241529',name:s.name,bg:['#f3e6f1','#c9a0dc']},200,200)}</div><h3>${s.name}</h3><div class="meta">${s.role}</div></div>`).join('');
+$('#rev').innerHTML=[['My braids lasted two months and the parts were perfect. I’m booking again.','Naome'],['Quick, friendly and my fade has never been sharper.','Daniel'],['Stefie made my wedding updo feel effortless. Everyone asked who did it.','Ruth']].map(r=>`<div class="card"><p class="quote">“${r[0]}”</p><div class="meta">${r[1]}</div></div>`).join('');
+
+/* ---- booking ---- */
+const pad=n=>String(n).padStart(2,'0');
+const iso=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const hash=s=>[...s].reduce((a,c)=>(a*31+c.charCodeAt(0))>>>0,7);
+const bookings=()=>store.get('stefie-bookings')||[];
+$('#stylist').innerHTML='<option value="any">Any available stylist</option>'+STYLISTS.map(s=>`<option value="${s.id}">${s.name}: ${s.role}</option>`).join('');
+$('#date').min=iso(new Date());
+function renderSlots(){const box=$('#slots'),ds=$('#date').value;pickedSlot=null;
+if(!ds){box.innerHTML='<span style="color:var(--muted)">Choose a date to see times.</span>';return}
+const d=new Date(ds+'T00:00'),h=HOURS[d.getDay()];
+if(!h){box.innerHTML='<span style="color:var(--muted)">We’re closed on Sundays. Try another day.</span>';return}
+const st=$('#stylist').value,now=new Date(),taken=bookings().filter(b=>b.date===ds&&(st==='any'||b.stylist===st)).map(b=>b.time);
+let out='';for(let t=h[0];t<h[1]-1;t++){const lab=pad(t)+':00';const busy=taken.includes(lab)||hash(ds+st+lab)%5===0||(ds===iso(now)&&t<=now.getHours());
+out+=`<button type="button" class="slot" data-t="${lab}" aria-pressed="false" ${busy?'disabled':''}>${lab}</button>`}
+box.innerHTML=out}
+$('#slots').onclick=e=>{const b=e.target.closest('.slot');if(!b||b.disabled)return;pickedSlot=b.dataset.t;$$('.slot').forEach(x=>x.setAttribute('aria-pressed',x===b))};
+$('#date').onchange=$('#stylist').onchange=renderSlots;
+function renderMine(){const list=bookings().sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
+$('#mine').innerHTML=list.length?list.map(b=>`<div class="bk"><div><strong>${b.date} at ${b.time}</strong> with ${b.stylistName}<br><span style="color:var(--muted);font-size:.9rem">${b.services.join(', ')} · ${fmt(b.total)} · Ref ${b.ref}</span></div><button class="btn ghost sm" data-ref="${b.ref}">Cancel</button></div>`).join(''):'<p style="color:var(--muted);margin:0">No bookings yet.</p>'}
+$('#mine').onclick=e=>{const b=e.target.closest('button[data-ref]');if(!b)return;store.set('stefie-bookings',bookings().filter(x=>x.ref!==b.dataset.ref));renderMine();renderSlots()};
+$('#form').onsubmit=e=>{e.preventDefault();const out=$('#out'),err=m=>{out.className='msg err';out.textContent=m};
+const items=[...cart].map(svcById),name=$('#name').value.trim(),phone=$('#phone').value.trim();
+if(!items.length)return err('Add at least one service from the list above.');
+if(!$('#date').value)return err('Choose a date.');
+if(!pickedSlot)return err('Choose a time.');
+if(!name)return err('Enter your name.');
+if(phone.replace(/\D/g,'').length<9)return err('Enter a phone number with at least 9 digits.');
+const sty=$('#stylist').value,sn=sty==='any'?'first available stylist':STYLISTS.find(s=>s.id===sty).name;
+const ref='SF'+Math.random().toString(36).slice(2,6).toUpperCase();
+const b={ref,date:$('#date').value,time:pickedSlot,stylist:sty,stylistName:sn,services:items.map(s=>s.name),total:items.reduce((a,s)=>a+s.price,0),name,phone};
+store.set('stefie-bookings',[...bookings(),b]);
+out.className='msg ok';out.textContent=`Booked, ${name.split(' ')[0]}! ${b.date} at ${b.time} with ${sn}. Your reference is ${ref}.`;
+cart.clear();renderSvc();renderCart();renderMine();renderSlots();$('#note').value=''};
+
+$('#theme').onclick=()=>{const r=document.documentElement,dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme:dark)').matches;r.dataset.theme=dark?'light':'dark'};
+$('#yr').textContent=new Date().getFullYear();
+$('#heroArt').innerHTML=art({id:'braids',name:'Illustrated braids',skin:'#8a5a44',hair:'#241529',bg:['#f7d3e6','#b98ad8']},200,250);
+renderHours();renderSvc();renderCart();renderGal();renderMine();renderSlots();
+</script>
+</body>
+</html>
