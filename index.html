@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Stefie’s Hair Salon</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="nav"><div class="wrap">
+<a class="logo" href="#top">Stefie’s Hair Salon</a>
+<nav><a href="#services">Services</a><a href="#gallery">Gallery</a><a href="#team">Stylists</a><a href="#book">Book</a><a href="#visit">Visit</a></nav>
+<button class="icon" id="theme" aria-label="Switch colour theme">◐</button>
+<a class="btn sm" href="#book">Book now</a>
+</div></header>
+
+<main id="top">
+<section class="hero"><div class="wrap">
+<div>
+<div class="badge"><span class="dot" id="dot"></span><span id="openTxt">Checking hours…</span></div>
+<h1>Hair that feels like you on your best day.</h1>
+<p class="sub">Braids, cuts, colour, locs and treatments from stylists who listen first. Choose your services, pick a time, and you’re booked in under a minute.</p>
+<div class="row"><a class="btn" href="#services">Choose services</a><a class="btn ghost" href="#gallery">See our work</a></div>
+</div>
+<div class="hero-art" id="heroArt" aria-hidden="true"></div>
+</div></section>
+
+<section id="services" class="band"><div class="wrap">
+<h2>Services and prices</h2>
+<p class="sub">Add what you want to your visit. We’ll total the price and time for you.</p>
+<div class="tabs" id="svcTabs" role="group" aria-label="Filter services"></div>
+<div class="grid" id="svcGrid"></div>
+</div></section>
+
+<section id="gallery"><div class="wrap">
+<h2>Gallery</h2>
+<p class="sub">Tap a look to see it larger, then add it to your visit.</p>
+<div class="tabs" id="galTabs" role="group" aria-label="Filter looks"></div>
+<div class="gal" id="gal"></div>
+</div></section>
+
+<section id="team" class="band stylists"><div class="wrap">
+<h2>Meet your stylists</h2>
+<div class="grid" id="team-grid"></div>
+</div></section>
+
+<section id="book"><div class="wrap">
+<h2>Book your visit</h2>
+<p class="sub">Pick your services above, then choose a stylist, day and time.</p>
+<div class="book">
+<div class="panel">
+<h3>Your visit</h3>
+<ul class="sum" id="sum"></ul>
+<div class="total"><span id="tTime"></span><span id="tPrice"></span></div>
+<p class="meta" style="color:var(--muted);font-size:.88rem;margin-top:10px">Pay at the salon after your appointment. Cash and mobile money accepted.</p>
+</div>
+<form class="panel" id="form" novalidate>
+<label for="stylist">Stylist</label>
+<select id="stylist"></select>
+<label for="date">Date</label>
+<input type="date" id="date">
+<label id="slotLbl">Time</label>
+<div class="slots" id="slots" aria-labelledby="slotLbl"></div>
+<label for="name">Your name</label>
+<input id="name" autocomplete="name">
+<label for="phone">Phone number</label>
+<input id="phone" type="tel" autocomplete="tel" placeholder="e.g. 0700 000 000">
+<label for="note">Notes (optional)</label>
+<textarea id="note" rows="2" placeholder="Hair length, allergies, inspiration…"></textarea>
+<div class="row"><button class="btn" type="submit">Confirm booking</button></div>
+<div id="out" role="status"></div>
+</form>
+</div>
+<div class="panel" style="margin-top:22px">
+<h3>Your bookings on this device</h3>
+<div id="mine"></div>
+</div>
+</div></section>
+
+<section class="band"><div class="wrap">
+<h2>Kind words</h2>
+<div class="grid" id="rev"></div>
+</div></section>
+
+<section id="visit"><div class="wrap book">
+<div>
+<h2>Visit us</h2>
+<p>Add your salon’s street address here.<br>Phone / WhatsApp: <a href="https://wa.me/256700000000">+256 700 000 000</a></p>
+<table class="hours" id="hours"></table>
+<div class="row"><a class="btn" href="https://wa.me/256700000000">Message us on WhatsApp</a></div>
+</div>
+<div>
+<h2>Good to know</h2>
+<details><summary>How long will my appointment take?</summary><p>The total on your visit summary adds up the time for each service. Braids and colour take longer, so book a morning slot.</p></details>
+<details><summary>Can I cancel or change my time?</summary><p>Yes. Cancel from “Your bookings” above, or message us at least a day ahead.</p></details>
+<details><summary>Should I come with clean hair?</summary><p>For braids and locs, arrive with clean, dry, detangled hair. For cuts and colour, come as you are.</p></details>
+<details><summary>Do you do kids’ hair?</summary><p>Yes. Pick “Kids’ cut or braids” and we’ll allow extra time.</p></details>
+</div>
+</div></section>
+</main>
+<footer><div class="wrap">© <span id="yr"></span> Stefie’s Hair Salon. All rights reserved.</div></footer>
+
+<div id="bar"><span id="barTxt"></span><a class="btn sm" href="#book" style="background:var(--bg);color:var(--ink)">Book these</a></div>
+<dialog id="lb"><div id="lbArt"></div><div class="in"><h3 id="lbTitle"></h3><p class="sub" id="lbDesc"></p><div class="row"><button class="btn" id="lbAdd">Add to my visit</button><button class="btn ghost" id="lbClose">Close</button></div></div></dialog>
+
+<script src="app.js"></script>
+</body>
+</html>
